@@ -14,7 +14,7 @@ flowchart LR
   E --> F[Crawl4AI /crawl]
 ```
 
-The bundled `cordis.patch.yml` mounts this plugin, selects `surfing-searxng` and `surfing-crawl4ai`, and enables DSH's native `web_fetch`. The built-in DeepSeek search provider may remain mounted but is not selected.
+The bundled `cordis.patch.yml` mounts this plugin, selects `surfing-searxng` and `surfing-crawl4ai`, and adds a fetch-only native tool consumer. The separate consumer works in both DSH assemblies: headless keeps its host-level `web_search`, while the Web UI keeps the `web_search` mounted by each Agent Preset. The built-in DeepSeek search provider may remain mounted but is not selected.
 
 ## Requirements
 

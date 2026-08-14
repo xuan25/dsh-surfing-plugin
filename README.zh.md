@@ -14,7 +14,7 @@ flowchart LR
   E --> F[Crawl4AI /crawl]
 ```
 
-随包发布的 `cordis.patch.yml` 完成三件事：挂载插件、将 DSH 的搜索与抓取 Provider 分别固定为 `surfing-searxng` 和 `surfing-crawl4ai`、开启原生 `web_fetch`。已有的 DeepSeek 搜索 Provider 可以继续挂载，但不会被选中。
+随包发布的 `cordis.patch.yml` 完成三件事：挂载插件、将 DSH 的搜索与抓取 Provider 分别固定为 `surfing-searxng` 和 `surfing-crawl4ai`、增加一个只注册原生 `web_fetch` 的 Consumer 行。这个独立 Consumer 同时适配两种 DSH 组装：headless 继续使用宿主层 `web_search`，Web UI 继续使用各 Agent Preset 内的 `web_search`。已有的 DeepSeek 搜索 Provider 可以继续挂载，但不会被选中。
 
 ## 要求
 

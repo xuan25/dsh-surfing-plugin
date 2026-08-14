@@ -6,15 +6,18 @@
     searchProvider: surfing-searxng
     fetchProvider: surfing-crawl4ai
 
-- id: tool-web
-  config:
-    search: true
-    fetch: true
-    searchMaxResults: 8
-    searchTimeoutMs: 30000
-    fetchTimeoutMs: 120000
-    fetchMaxOutputChars: 200000
-
 - insert:
     - id: surfing-plugin
       name: dsh-surfing-plugin
+
+    # The Web app owns search inside each Agent Preset and disables the host
+    # tool-web row; headless keeps that host search row enabled. A separate
+    # fetch-only consumer therefore works in both profiles without duplicate
+    # web_search registration.
+    - id: surfing-tool-web-fetch
+      name: '@deepseek-ai/dsh-tool-web'
+      config:
+        search: false
+        fetch: true
+        fetchTimeoutMs: 120000
+        fetchMaxOutputChars: 200000
