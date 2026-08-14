@@ -117,7 +117,7 @@ The Crawl4AI provider sends the minimal `{ "urls": [url] }` body to `POST /crawl
 Git installation builds from source through `prepare`. Pin a commit:
 
 ```sh
-dsh plugin --profile web add github:OWNER/surfing-plugin#COMMIT_SHA
+dsh plugin --profile web add github:cyijun/surfing-plugin#COMMIT_SHA
 ```
 
 pnpm 10 and newer require build-script approval for Git dependencies. If the first install is blocked, copy its exact package key into the profile's `pnpm-workspace.yaml` and retry:
@@ -137,7 +137,7 @@ corepack pnpm run check
 corepack pnpm pack
 ```
 
-CI runs on main and pull requests. Tags matching `v*` trigger the npm Trusted Publishing workflow. After creating the remote repository, configure that repository and `publish.yml` as an npm Trusted Publisher, add the real `repository` field to `package.json`, and confirm that the `dsh-surfing-plugin` package name remains available.
+CI runs on main and pull requests. Tags matching `v*` trigger the npm Trusted Publishing workflow. Before the first release, configure this repository and `publish.yml` as an npm Trusted Publisher and confirm that the `dsh-surfing-plugin` package name remains available.
 
 ## License
 

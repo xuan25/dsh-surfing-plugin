@@ -127,7 +127,7 @@ dsh plugin --profile web remove dsh-surfing-plugin
 Git 安装会从源码运行本包的 `prepare` 构建。建议锁定 commit：
 
 ```sh
-dsh plugin --profile web add github:OWNER/surfing-plugin#COMMIT_SHA
+dsh plugin --profile web add github:cyijun/surfing-plugin#COMMIT_SHA
 ```
 
 pnpm 10 及更高版本需要先授权 Git 依赖的构建脚本。首次安装提示被阻止时，将提示中的确切包键加入该 profile 的 `pnpm-workspace.yaml`：
@@ -147,9 +147,7 @@ corepack pnpm run check
 corepack pnpm pack
 ```
 
-`.github/workflows/ci.yml` 在 main 与 pull request 上运行全部检查。`.github/workflows/publish.yml` 在推送 `v*` tag 时使用 npm Trusted Publishing 发布；创建远程仓库后，需要在 npm 包设置中把该 GitHub 仓库和 `publish.yml` 配置为 Trusted Publisher。
-
-正式发布前还应在 `package.json` 中加入实际的 `repository` 地址，并确认 `dsh-surfing-plugin` 包名仍可注册。
+`.github/workflows/ci.yml` 在 main 与 pull request 上运行全部检查。`.github/workflows/publish.yml` 在推送 `v*` tag 时使用 npm Trusted Publishing 发布；首次发布前，需要在 npm 包设置中把该 GitHub 仓库和 `publish.yml` 配置为 Trusted Publisher，并确认 `dsh-surfing-plugin` 包名仍可注册。
 
 ## 许可证
 
