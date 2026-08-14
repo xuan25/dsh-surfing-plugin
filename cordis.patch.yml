@@ -1,0 +1,20 @@
+# Select this bundle's providers while keeping DSH's native web_search and
+# web_fetch tool schemas, output rendering, cancellation, and result limits.
+
+- id: web
+  config:
+    searchProvider: surfing-searxng
+    fetchProvider: surfing-crawl4ai
+
+- id: tool-web
+  config:
+    search: true
+    fetch: true
+    searchMaxResults: 8
+    searchTimeoutMs: 30000
+    fetchTimeoutMs: 120000
+    fetchMaxOutputChars: 200000
+
+- insert:
+    - id: surfing-plugin
+      name: dsh-surfing-plugin
