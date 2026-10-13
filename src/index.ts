@@ -15,7 +15,7 @@ import {
   SEARXNG_URL_ENV,
 } from './config.ts'
 import type { Config as PluginConfig, Crawl4aiConfig, SearxngConfig } from './config.ts'
-import { CRAWL4AI_PROVIDER_ID, Crawl4aiFetchProvider } from './crawl4ai.ts'
+import { CRAWL4AI_PROVIDER_ID, Crawl4aiFetchProvider, WEB_CRAWL_ERROR } from './crawl4ai.ts'
 import { SEARXNG_PROVIDER_ID, SearxngSearchProvider } from './searxng.ts'
 
 export {
@@ -29,6 +29,7 @@ export {
   SEARXNG_PROVIDER_ID,
   SEARXNG_URL_ENV,
   SearxngSearchProvider,
+  WEB_CRAWL_ERROR,
 }
 export type {
   AuthenticationConfig,

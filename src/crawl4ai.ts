@@ -16,6 +16,9 @@ import {
 /** Stable fetch provider id selected by the bundle patch. */
 export const CRAWL4AI_PROVIDER_ID = 'surfing-crawl4ai'
 
+/** Fault code for a crawl-stage failure: the backend answered, but the crawl of the target failed. */
+export const WEB_CRAWL_ERROR = 'WEB_CRAWL_ERROR'
+
 /** Fetch provider that returns Crawl4AI markdown through `ctx.web`. */
 export class Crawl4aiFetchProvider implements WebFetchProvider {
   readonly id = CRAWL4AI_PROVIDER_ID
@@ -77,7 +80,7 @@ function mapCrawlResponse(
   if (readBoolean(result, 'success') === false) {
     throw new WebError(
       readNonBlankString(result, 'error_message') ?? 'Crawl4AI could not crawl the target URL',
-      'WEB_PROVIDER_ERROR',
+      WEB_CRAWL_ERROR,
     )
   }
 

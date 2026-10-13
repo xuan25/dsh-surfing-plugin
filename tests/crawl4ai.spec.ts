@@ -104,7 +104,7 @@ describe('Crawl4aiFetchProvider', () => {
     })
   })
 
-  it('returns target non-2xx status and throws for Crawl4AI execution failures', async () => {
+  it('throws WEB_CRAWL_ERROR when the crawl of the target fails', async () => {
     vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
       success: true,
       results: [{
@@ -116,8 +116,24 @@ describe('Crawl4aiFetchProvider', () => {
     }), { status: 200 })))
 
     await expect(provider().fetch({ url: 'https://example.com' })).rejects.toMatchObject({
-      code: 'WEB_PROVIDER_ERROR',
+      code: 'WEB_CRAWL_ERROR',
       message: 'browser crashed',
+    })
+  })
+
+  it('throws WEB_CRAWL_ERROR with the verbatim anti-bot detection message', async () => {
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
+      success: true,
+      results: [{
+        url: 'https://example.com',
+        success: false,
+        error_message: 'Blocked by anti-bot protection: HTTP 403 with near-empty response (39 bytes)',
+      }],
+    }), { status: 200 })))
+
+    await expect(provider().fetch({ url: 'https://example.com' })).rejects.toMatchObject({
+      code: 'WEB_CRAWL_ERROR',
+      message: 'Blocked by anti-bot protection: HTTP 403 with near-empty response (39 bytes)',
     })
   })
 
